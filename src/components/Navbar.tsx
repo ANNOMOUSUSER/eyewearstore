@@ -1,21 +1,65 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ShoppingBag, User, Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { useCart } from '@/lib/cart';
+import { createClient } from '@/lib/supabase/client';
+import type { Session } from '@supabase/supabase-js';
 
 const navLinks = [
-  { href: '/shop?category=eyeglasses', label: 'Eyeglasses', query: 'eyeglasses' },
-  { href: '/shop?category=sunglasses', label: 'Sunglasses', query: 'sunglasses' },
-  { href: '/shop?category=contact-lenses', label: 'Contact Lenses', query: 'contact-lenses' },
-  { href: '/admin', label: 'Admin' }
+  { href: '/shop?category=eyeglasses', label: 'Eyeglasses' },
+  { href: '/shop?category=sunglasses', label: 'Sunglasses' },
+  { href: '/shop?category=contact-lenses', label: 'Contact Lenses' },
 ];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
+  const [profileRole, setProfileRole] = useState<string | null>(null);
   const { count, setDrawerOpen } = useCart();
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    const loadAuth = async () => {
+      const { data } = await supabase.auth.getSession();
+      setSession(data.session ?? null);
+
+      if (data.session?.user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', data.session.user.id)
+          .single();
+        setProfileRole(profile?.role ?? null);
+      } else {
+        setProfileRole(null);
+      }
+    };
+
+    loadAuth();
+
+    const { data: listener } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      setSession(session ?? null);
+      if (session?.user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', session.user.id)
+          .single();
+        setProfileRole(profile?.role ?? null);
+      } else {
+        setProfileRole(null);
+      }
+    });
+
+    return () => listener?.subscription.unsubscribe();
+  }, []);
+
+  const isAdmin = profileRole === 'admin';
+  const isLoggedIn = Boolean(session?.user);
 
   return (
     <nav className="sticky top-0 z-50 glass border-b border-line bg-surface/80 backdrop-blur-md">
@@ -39,16 +83,33 @@ export default function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
               </Link>
             ))}
+            {isAdmin && (
+              <Link 
+                href="/admin"
+                className="group relative text-ink hover:text-accent transition-colors font-medium text-sm tracking-wide"
+              >
+                Admin
+                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+              </Link>
+            )}
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="/admin" className="rounded-full border border-line bg-paper px-3 py-2 text-sm font-medium text-ink transition hover:border-accent hover:text-accent">
-              Admin
-            </Link>
             <ThemeToggle />
-            <Link href="/account" className="text-ink hover:text-accent transition-colors">
-              <User size={24} strokeWidth={1.5} />
-            </Link>
+            {isLoggedIn ? (
+              <>
+                <Link href="/orders" className="text-ink hover:text-accent transition-colors text-sm font-medium">
+                  My Orders
+                </Link>
+                <Link href="/account" className="text-ink hover:text-accent transition-colors">
+                  <User size={24} strokeWidth={1.5} />
+                </Link>
+              </>
+            ) : (
+              <Link href="/login" className="rounded-full border border-line bg-paper px-3 py-2 text-sm font-medium text-ink transition hover:border-accent hover:text-accent">
+                Sign in
+              </Link>
+            )}
             <button 
               onClick={() => setDrawerOpen(true)}
               className="relative text-ink hover:text-accent transition-colors group"
@@ -97,7 +158,7 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <div className="border-t border-line my-4 pt-4 space-y-4">
+            {isAdmin && (
               <Link 
                 href="/admin"
                 onClick={() => setMobileMenuOpen(false)}
@@ -105,21 +166,33 @@ export default function Navbar() {
               >
                 <User size={20} className="mr-3" /> Admin
               </Link>
+            )}
+            {isLoggedIn ? (
+              <>
+                <Link 
+                  href="/account"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center text-ink hover:text-accent font-medium text-lg px-2 py-2"
+                >
+                  <User size={20} className="mr-3" /> Account
+                </Link>
+                <Link 
+                  href="/orders"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-ink hover:text-accent font-medium text-lg px-2 py-2 ml-8"
+                >
+                  My Orders
+                </Link>
+              </>
+            ) : (
               <Link 
-                href="/account"
+                href="/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center text-ink hover:text-accent font-medium text-lg px-2 py-2"
+                className="block text-ink hover:text-accent font-medium text-lg px-2 py-2"
               >
-                <User size={20} className="mr-3" /> Account
+                Sign in
               </Link>
-              <Link 
-                href="/account/orders"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block text-ink hover:text-accent font-medium text-lg px-2 py-2 ml-8"
-              >
-                My Orders
-              </Link>
-            </div>
+            )}
           </div>
         </div>
       )}

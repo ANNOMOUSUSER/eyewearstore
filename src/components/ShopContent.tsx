@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Search, SlidersHorizontal, ChevronDown } from "lucide-react";
 import type { Product, Category } from "@/lib/types";
-import { useCart } from "@/lib/cart";
+import { useCart } from '@/lib/cart';
+import { createClient } from '@/lib/supabase/client';
 
 type SortOption = "newest" | "price-asc" | "price-desc";
 
@@ -22,6 +24,18 @@ export default function ShopContent({
   const [sort, setSort] = useState<SortOption>("newest");
   const [sortOpen, setSortOpen] = useState(false);
   const { addItem } = useCart();
+  const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const supabase = createClient();
+    const loadSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      setIsLoggedIn(Boolean(data.session?.user));
+    };
+
+    loadSession();
+  }, []);
 
   const sortLabels: Record<SortOption, string> = {
     newest: "Newest",
@@ -81,6 +95,10 @@ export default function ShopContent({
   function handleQuickAdd(e: React.MouseEvent, p: Product) {
     e.preventDefault();
     e.stopPropagation();
+    if (!isLoggedIn) {
+      router.push(`/login?redirect=/product/${p.id}`);
+      return;
+    }
     addItem({
       productId: p.id,
       name: p.name,
