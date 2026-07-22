@@ -1,0 +1,46 @@
+### Node
+node_modules/
+
+### Next.js
+.next/
+out/
+
+### Build
+dist/
+build/
+
+### Environment
+.env
+.env.local
+.env.*.local
+
+### Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+### OS files
+.DS_Store
+Thumbs.db
+
+### IDEs / Editors
+.vscode/
+.idea/
+
+### Coverage / caches
+coverage/
+.cache/
+.parcel-cache/
+.sass-cache/
+
+### Deployment
+.vercel/
+.netlify/
+
+### Supabase local DB
+supabase/.db/
+
+### TypeScript
+*.tsbuildinfo
