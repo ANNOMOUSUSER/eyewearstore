@@ -53,22 +53,22 @@ export default async function AdminDashboard() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <div className="rounded-[24px] border border-line bg-[#f1e7d4] p-5 shadow-sm">
+        <div className="rounded-[24px] border border-line bg-paper p-5 shadow-sm">
           <p className="text-xs uppercase tracking-[0.24em] text-muted">Products</p>
           <p className="mt-3 text-3xl font-semibold text-ink">{productCount ?? 0}</p>
           <p className="mt-2 text-sm text-muted">{activeProducts} active · {outOfStockProducts} out of stock</p>
         </div>
-        <div className="rounded-[24px] border border-line bg-[#f1e7d4] p-5 shadow-sm">
+        <div className="rounded-[24px] border border-line bg-paper p-5 shadow-sm">
           <p className="text-xs uppercase tracking-[0.24em] text-muted">Orders</p>
           <p className="mt-3 text-3xl font-semibold text-ink">{orderCount ?? 0}</p>
           <p className="mt-2 text-sm text-muted">{pendingOrders.length} pending · {codPendingOrders.length} COD awaiting collection</p>
         </div>
-        <div className="rounded-[24px] border border-line bg-[#f1e7d4] p-5 shadow-sm">
+        <div className="rounded-[24px] border border-line bg-paper p-5 shadow-sm">
           <p className="text-xs uppercase tracking-[0.24em] text-muted">Reviews</p>
           <p className="mt-3 text-3xl font-semibold text-ink">{reviewsCount ?? 0}</p>
           <p className="mt-2 text-sm text-muted">Customer feedback and ratings</p>
         </div>
-        <div className="rounded-[24px] border border-line bg-[#f1e7d4] p-5 shadow-sm">
+        <div className="rounded-[24px] border border-line bg-paper p-5 shadow-sm">
           <p className="text-xs uppercase tracking-[0.24em] text-muted">Revenue (paid)</p>
           <p className="mt-3 text-3xl font-semibold text-ink">₹{revenue.toFixed(0)}</p>
           <p className="mt-2 text-sm text-muted">Captured from completed orders</p>
@@ -76,7 +76,7 @@ export default async function AdminDashboard() {
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-        <section className="rounded-[24px] border border-line bg-[#f7efe0] p-5 shadow-sm">
+        <section className="rounded-[24px] border border-line bg-paper p-5 shadow-sm">
           <div className="mb-4 flex items-center justify-between">
             <div>
               <h2 className="text-lg font-semibold text-ink">Recent orders</h2>
@@ -109,7 +109,7 @@ export default async function AdminDashboard() {
           </div>
         </section>
 
-        <section className="space-y-4 rounded-[24px] border border-line bg-[#f7efe0] p-5 shadow-sm">
+        <section className="space-y-4 rounded-[24px] border border-line bg-surface p-5 shadow-sm">
           <div>
             <h2 className="text-lg font-semibold text-ink">Needs attention</h2>
             <p className="text-sm text-muted">Monitor items that need action soon.</p>
