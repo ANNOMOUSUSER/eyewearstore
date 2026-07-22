@@ -22,6 +22,38 @@
   --glass-border: rgba(255, 255, 255, 0.06);
   --danger: #ef4444;
   --success: #22c55e;
+  --surface: #111111;
+  --surface-2: #1a1a1a;
+}
+
+.carousel-scroll {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.carousel-scroll > * {
+  scroll-snap-align: start;
+}
+
+.carousel-card {
+  min-width: 80vw;
+}
+
+@media (min-width: 640px) {
+  .carousel-scroll {
+    display: grid;
+    grid-auto-flow: initial;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow-x: visible;
+  }
+  .carousel-card {
+    min-width: auto;
+  }
 }
 
 /* Light theme overrides */
@@ -30,18 +62,42 @@
   --gold-light: #c49660;
   --gold-dark: #8b5f38;
   --bg-primary: #ffffff;
-  --bg-secondary: #fbfbfb;
-  --bg-tertiary: #f6f6f6;
+  --bg-secondary: #f8f8f8;
+  --bg-tertiary: #f2f2f2;
   --bg-card: #ffffff;
-  --text-primary: #0b1220;
+  --surface: #f8f9fb;
+  --surface-2: #f2f4f8;
+  --text-primary: #111827;
   --text-secondary: #4b5563;
   --text-muted: #6b7280;
-  --border-color: #e6e6e6;
-  --border-subtle: #f0f0f0;
-  --glass-bg: rgba(255,255,255,0.6);
-  --glass-border: rgba(15,23,42,0.06);
-  --danger: #dc2626;
-  --success: #16a34a;
+  --border-color: #d8dbe0;
+  --border-subtle: #e5e7eb;
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(148, 163, 184, 0.18);
+  --danger: #b91c1c;
+  --success: #15803d;
+}
+
+.bg-cloud {
+  background-color: var(--bg-card) !important;
+}
+.bg-paper {
+  background-color: var(--bg-card) !important;
+}
+.bg-surface {
+  background-color: var(--surface) !important;
+}
+.bg-surface-2 {
+  background-color: var(--surface-2) !important;
+}
+.text-ink {
+  color: var(--text-primary) !important;
+}
+.text-muted {
+  color: var(--text-muted) !important;
+}
+.border-line {
+  border-color: var(--border-color) !important;
 }
 
 /* ─── Base ──────────────────────────────────────────────────── */
@@ -100,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-card {
-  background: rgba(20, 20, 20, 0.5);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
@@ -277,8 +333,32 @@ h1, h2, h3, h4, h5, h6 {
 }
 .btn-secondary:hover {
   border-color: var(--gold);
-  color: var(--gold);
-  background: rgba(197, 168, 128, 0.05);
+  color: var(--gold-dark);
+  background: var(--surface-2);
+}
+
+.select-field {
+  appearance: none;
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  min-width: 10rem;
+  line-height: 1.4;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  background-clip: padding-box;
+}
+
+.select-field:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.14);
+}
+
+.select-field option {
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 /* ─── Input Styles ──────────────────────────────────────────── */

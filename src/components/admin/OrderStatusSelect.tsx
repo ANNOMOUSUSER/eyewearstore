@@ -34,7 +34,7 @@ export default function OrderStatusSelect({
       value={current}
       onChange={handleChange}
       disabled={saving}
-      className="border border-line rounded-sm px-2 py-1 text-xs"
+      className="select-field border-line rounded-sm px-2 py-1 text-xs"
     >
       {STATUSES.map((s) => (
         <option key={s} value={s}>

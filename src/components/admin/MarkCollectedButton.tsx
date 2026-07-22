@@ -24,7 +24,7 @@ export default function MarkCollectedButton({ orderId }: { orderId: string }) {
     <button
       onClick={handleClick}
       disabled={saving}
-      className="ml-3 inline-flex items-center gap-2 text-sm bg-accent/10 border border-accent text-accent px-3 py-1.5 rounded-full"
+      className="ml-3 inline-flex items-center gap-2 text-sm bg-accent/10 border border-accent text-accent px-3 py-1.5 rounded-full hover:bg-accent/20 disabled:opacity-60"
     >
       <Check className="w-4 h-4" />
       {saving ? "Saving..." : "Mark payment collected"}

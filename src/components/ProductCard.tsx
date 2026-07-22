@@ -42,9 +42,6 @@ export default function ProductCard({ product }: { product: Product }) {
                 </span>
               )}
             </div>
-            <span className="rounded-full border border-line px-2.5 py-1 text-[11px] uppercase tracking-wide text-muted">
-              Shop now
-            </span>
           </div>
         </div>
       </div>

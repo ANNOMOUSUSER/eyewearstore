@@ -136,12 +136,12 @@ export default async function HomePage() {
               </h2>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+          <div className="carousel-scroll grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             {(categories as Category[]).map((c, i) => (
               <ScrollReveal key={c.id} delay={i * 100}>
                 <Link
                   href={`/shop?category=${c.slug}`}
-                  className="group relative block overflow-hidden rounded-[24px] border border-line bg-cloud hover-lift"
+                  className="group relative block min-w-[80vw] sm:min-w-0 overflow-hidden rounded-[24px] border border-line bg-cloud hover-lift"
                 >
                   <img
                     src={
@@ -231,10 +231,10 @@ export default async function HomePage() {
             </h2>
           </div>
         </ScrollReveal>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="carousel-scroll grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {features.map((f, i) => (
             <ScrollReveal key={f.title} delay={i * 80}>
-              <div className="glass-card p-6 sm:p-8 text-center hover-lift">
+              <div className="carousel-card glass-card p-6 sm:p-8 text-center hover-lift">
                 <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                   <f.icon className="w-5 h-5 text-accent" />
                 </div>
@@ -250,16 +250,14 @@ export default async function HomePage() {
       <section className="bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
           <ScrollReveal>
-            <div className="relative rounded-xl overflow-hidden border border-line bg-gradient-to-r from-cloud via-surface to-cloud p-8 sm:p-12 lg:p-16 text-center">
+            <div className="relative rounded-xl overflow-hidden border border-line bg-gradient-to-r from-accent/10 via-surface to-accent/10 p-8 sm:p-12 lg:p-16 text-center">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] rounded-full bg-accent/5 blur-[100px]" />
               <div className="relative z-10">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-ink mb-4">
-                  See the world in{" "}
-                  <span className="text-gradient-gold">high definition</span>
+                  See the world in <span className="text-gradient-gold">high definition</span>
                 </h2>
-                <p className="text-muted max-w-md mx-auto mb-8">
-                  Join thousands who have upgraded their vision with Optique&#39;s premium
-                  collection.
+                <p className="text-ink/80 max-w-md mx-auto mb-8 text-base sm:text-lg leading-relaxed">
+                  Join thousands who have upgraded their vision with Optique&#39;s premium collection.
                 </p>
                 <Link href="/shop" className="btn-primary">
                   Start Shopping

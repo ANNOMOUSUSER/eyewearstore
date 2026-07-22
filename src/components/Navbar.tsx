@@ -9,7 +9,8 @@ import { useCart } from '@/lib/cart';
 const navLinks = [
   { href: '/shop?category=eyeglasses', label: 'Eyeglasses', query: 'eyeglasses' },
   { href: '/shop?category=sunglasses', label: 'Sunglasses', query: 'sunglasses' },
-  { href: '/shop?category=contact-lenses', label: 'Contact Lenses', query: 'contact-lenses' }
+  { href: '/shop?category=contact-lenses', label: 'Contact Lenses', query: 'contact-lenses' },
+  { href: '/admin', label: 'Admin' }
 ];
 
 export default function Navbar() {
@@ -40,7 +41,10 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-4">
+            <Link href="/admin" className="rounded-full border border-line bg-paper px-3 py-2 text-sm font-medium text-ink transition hover:border-accent hover:text-accent">
+              Admin
+            </Link>
             <ThemeToggle />
             <Link href="/account" className="text-ink hover:text-accent transition-colors">
               <User size={24} strokeWidth={1.5} />
@@ -94,6 +98,13 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="border-t border-line my-4 pt-4 space-y-4">
+              <Link 
+                href="/admin"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center text-ink hover:text-accent font-medium text-lg px-2 py-2"
+              >
+                <User size={20} className="mr-3" /> Admin
+              </Link>
               <Link 
                 href="/account"
                 onClick={() => setMobileMenuOpen(false)}

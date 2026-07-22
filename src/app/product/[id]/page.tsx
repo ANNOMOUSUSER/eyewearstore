@@ -92,7 +92,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
           <div className="mt-4 flex flex-col sm:flex-row gap-3">
             <VendorChatButton
               productName={p.name}
-              productUrl={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/product/${p.id}`}
+              productUrl={`${process.env.NEXT_PUBLIC_APP_URL || "https://eyewearstore-rho.vercel.app"}/product/${p.id}`}
             />
           </div>
 
