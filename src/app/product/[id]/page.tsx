@@ -150,7 +150,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
       </div>
 
       <section className="mt-10 grid gap-8 lg:grid-cols-[1.8fr_1fr]">
-        <div className="rounded-[24px] border border-line bg-[#f7efe0] p-6">
+        <div className="rounded-[24px] border border-line bg-[#171717] p-6">
           <div className="mb-4 flex items-center justify-between gap-3">
             <div>
               <h2 className="text-lg font-semibold text-ink">Customer reviews</h2>
@@ -176,14 +176,14 @@ export default async function ProductPage({ params }: { params: { id: string } }
         </div>
 
         <aside className="space-y-4">
-          <div className="rounded-[24px] border border-line bg-[#f7efe0] p-6">
+          <div className="rounded-[24px] border border-line bg-[#171717] p-6">
             <h2 className="text-lg font-semibold text-ink mb-3">You may also like</h2>
             {suggestions && suggestions.length > 0 ? (
               <div className="grid gap-3">
                 {suggestions.map((item: any) => {
                   const itemPrice = item.discount_price && item.discount_price < item.price ? item.discount_price : item.price;
                   return (
-                    <Link key={item.id} href={`/product/${item.id}`} className="group block rounded-3xl border border-line bg-cloud p-4 hover:border-accent/60 hover:shadow-card transition-colors">
+                    <Link key={item.id} href={`/product/${item.id}`} className="group block rounded-3xl border border-line bg-[#1f1f1f] p-4 hover:border-accent/60 hover:shadow-card transition-colors">
                       <div className="flex items-center gap-3">
                         <div className="w-16 h-16 rounded-2xl bg-surface-2 overflow-hidden">
                           {item.image_url ? (

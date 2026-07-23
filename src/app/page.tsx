@@ -47,8 +47,8 @@ export default async function HomePage() {
   return (
     <div>
       {/* ─── Hero ──────────────────────────────────────────────── */}
-      <section className="relative bg-paper">
-        <div className="absolute inset-0 bg-paper" />
+      <section className="relative bg-[#121212]">
+        <div className="absolute inset-0 bg-[#121212]" />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-accent/10 blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-accent/10 blur-[100px]" />
 
@@ -56,17 +56,17 @@ export default async function HomePage() {
           <div className="grid lg:grid-cols-[1.02fr_0.98fr] gap-10 lg:gap-14 items-center">
             <div className="max-w-2xl">
               <ScrollReveal>
-                <p className="text-slate-500 text-sm font-semibold tracking-[0.3em] uppercase mb-4">
+                <p className="text-slate-300 text-sm font-semibold tracking-[0.3em] uppercase mb-4">
                   Premium Eyewear Collection
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={100}>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-slate-950 tracking-tight leading-[1.05]">
-                  Eyewear that <span className="text-slate-700">feels premium</span> every day
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-ink tracking-tight leading-[1.05]">
+                  Eyewear that <span className="text-accent">feels premium</span> every day
                 </h1>
               </ScrollReveal>
               <ScrollReveal delay={200}>
-                <p className="mt-6 text-slate-700 text-base sm:text-lg max-w-xl leading-relaxed">
+                <p className="mt-6 text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed">
                   Shop designer-inspired frames, UV-protective sunglasses, and comfort-first contact lenses curated for modern style and everyday confidence.
                 </p>
               </ScrollReveal>
@@ -248,16 +248,16 @@ export default async function HomePage() {
       </section>
 
       {/* ─── CTA Banner ────────────────────────────────────────── */}
-      <section className="bg-paper">
+      <section className="bg-[#121212]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
           <ScrollReveal>
-            <div className="relative rounded-xl overflow-hidden border border-line bg-paper p-8 sm:p-12 lg:p-16 text-center">
+            <div className="relative rounded-xl overflow-hidden border border-line bg-[#171717] p-8 sm:p-12 lg:p-16 text-center">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] rounded-full bg-accent/10 blur-[100px]" />
               <div className="relative z-10">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-slate-950 mb-4">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-ink mb-4">
                   See the world in <span className="text-accent">high definition</span>
                 </h2>
-                <p className="text-slate-700 max-w-md mx-auto mb-8 text-base sm:text-lg leading-relaxed">
+                <p className="text-slate-300 max-w-md mx-auto mb-8 text-base sm:text-lg leading-relaxed">
                   Join thousands who have upgraded their vision with Optique&#39;s premium collection.
                 </p>
                 <Link href="/shop" className="btn-primary">
