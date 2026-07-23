@@ -137,7 +137,7 @@ export default function Navbar() {
             </button>
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-ink hover:text-accent transition-colors"
+              className="rounded-full border border-line bg-surface/80 p-2 text-ink shadow-sm transition-colors hover:text-accent"
             >
               {mobileMenuOpen ? <X size={28} strokeWidth={1.5} /> : <Menu size={28} strokeWidth={1.5} />}
             </button>

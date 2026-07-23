@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import LogoutButton from "@/components/LogoutButton";
+import ThemeToggle from "@/components/ThemeToggle";
 import { User, Package, Shield, Mail, ChevronRight } from "lucide-react";
 
 export default async function AccountPage() {
@@ -31,7 +32,10 @@ export default async function AccountPage() {
 
       {/* Profile Info */}
       <div className="glass-card p-6 mb-4">
-        <h2 className="text-xs font-semibold text-muted uppercase tracking-wider mb-4">Profile</h2>
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <h2 className="text-xs font-semibold text-muted uppercase tracking-wider">Profile</h2>
+          <ThemeToggle />
+        </div>
         <div className="space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-md bg-surface-2 border border-line flex items-center justify-center">
