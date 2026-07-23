@@ -121,12 +121,6 @@ export default function AddToCart({ product }: { product: Product }) {
         </div>
       </div>
 
-      {!isLoggedIn && (
-        <div className="rounded-3xl border border-line bg-[#f7efe0] p-4 text-sm text-ink">
-          Please sign in to add this product to your cart.
-        </div>
-      )}
-
       <div className="flex flex-col sm:flex-row gap-3">
         <button
           onClick={handleAddToCart}
